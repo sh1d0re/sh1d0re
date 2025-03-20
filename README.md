@@ -1,1 +1,20 @@
-wget http://archive.raspberrypi.org/debian/pool/main/h/hostapd/hostapd_2.10-2+rpt1_armhf.deb
+sudo systemctl stop dhcpcd
+
+
+sudo systemctl disable dhcpcd
+
+sudo systemctl enable NetworkManager
+
+sudo systemctl start NetworkManager
+
+
+
+nmcli device wifi hotspot ifname wlan0 ssid MyPiHotspot password "MySecurePassword"
+
+nmcli connection modify Hotspot ipv4.method shared
+
+
+nmcli connection up Hotspot
+
+nmcli connection modify Hotspot autoconnect yes
+
